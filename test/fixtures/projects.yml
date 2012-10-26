@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  long_description: MyText
+  language: MyString
+  creator: 1
+  accepted: false
+  accepted_date: 2012-10-25
+
+two:
+  name: MyString
+  description: MyString
+  long_description: MyText
+  language: MyString
+  creator: 1
+  accepted: false
+  accepted_date: 2012-10-25
