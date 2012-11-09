@@ -26,4 +26,11 @@ class ProjectsController < ApplicationController
     @project.update_attributes(params[:project])
     redirect_to @project
   end
+
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    redirect_to root_url, :notice => "Project destroyed"
+  end
 end
