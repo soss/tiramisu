@@ -1,9 +1,6 @@
 Tiramisu::Application.routes.draw do
-  get "projects/index"
 
-  get "projects/new", :as => "new_project"
-
-  get "projects/edit"
+  resources :projects
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

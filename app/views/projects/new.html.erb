@@ -1,1 +1,10 @@
 <p>Please enter the details for a new project</p>
+
+<%= form_for @project do |f| %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %><br />
+
+  <br/>
+
+  <%= f.submit %>
+<% end %>
