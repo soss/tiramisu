@@ -4,5 +4,20 @@
 
   <br /><br />
 
-  <%= f.submit %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <br /><br />
+
+  <%= f.label :long_description %>
+  <%= f.text_area :long_description, :rows => "10" %>
+
+  <br /><br />
+
+  <%= f.label :language %>
+  <%= f.text_field :language %>
+
+  <br /><br />
+
+  <%= f.submit :class => "btn btn-primary" %>
 <% end %>
