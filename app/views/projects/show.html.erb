@@ -1,4 +1,8 @@
 <h1><%= @project.name %></h1>
+<h2>Idea by: <%= @project.creator %></h2>
+<h3><%= @project.description %></h3>
+<p><%= @project.long_description %></p>
+
 
 <%= link_to "Edit", edit_project_path(@project) %><br />
 <%= link_to "Delete", @project,
