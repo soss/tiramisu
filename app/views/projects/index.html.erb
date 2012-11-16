@@ -1,8 +1,12 @@
 <div class="row">
 	<% @projects.each do |project| %>
-		<div class="span4">
+		<div>
 	      <h3><%= link_to project.name, project %></h3>
-	      <p><%= project.description %></p>
+        <p>
+          <%= project.description %><br />
+          <%= project.votes.count + 1 %> votes.
+        </p>
+        <p><a href="#" class="vote" data-project="<%= project.id %>">Vote</a></p>
 		</div>
 	<% end %>
 </div>
