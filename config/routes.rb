@@ -6,10 +6,10 @@ Tiramisu::Application.routes.draw do
   
   resources :users
   resources :sessions
-  get "secret" => "home#secret", :as => "secret"
 
   resources :projects
 
+  get '/:username/projects' => 'users#projects', :as => 'user_projects'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

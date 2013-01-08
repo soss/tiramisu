@@ -5,10 +5,6 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
-  def home
-    @projects = Project.all    
-  end
-
   def show
     @project = Project.find(params[:id])
   end
