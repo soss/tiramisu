@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
 
+  before_filter :must_be_creator, :only => [:edit, :update, :destroy]
+
   def index
     @projects = Project.all
   end
@@ -15,35 +17,43 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
-    @project.update_attribute(:user_id, current_user.id)
-    @project.save
-    redirect_to root_url 
+    @project.user = current_user
+    if @project.save
+      redirect_to root_url, :notice => "Created New Project"
+    else
+      render :new, :alert => "An error ocurred while creating the Project"
+    end
   end
 
   def edit
     @project = Project.find(params[:id])
-    if current_user.id != @project.user_id
-      redirect_to redirect_to @project, :notice => "You do not have permission to Edit this project"
-    end
-    
+    must_be_creator    
   end
 
   def update
     @project = Project.find(params[:id])
-    if current_user.id != @project.user_id
-      redirect_to redirect_to @project, :notice => "You do not have permission to Edit this project"
+    must_be_creator
+    if @project.update_attributes(params[:project])
+      redirect_to @project, :notice => "Project Updated"
+    else
+      redirect_to @project, :alert => "An error ocurred while updating the Project"
     end
-    @project.update_attributes(params[:project])
-    redirect_to @project
   end
 
   def destroy
     @project = Project.find(params[:id])
-    if current_user.id != @project.user_id
-      redirect_to redirect_to @project, :notice => "You do not have permission to Delete this project"
+    must_be_creator
+    if @project.destroy
+      redirect_to root_url, :notice => "Project destroyed"
+    else
+      redirect_to @project, :alert => "An error ocurred while deleting the Project"
     end
-    @project.destroy
+  end
 
-    redirect_to root_url, :notice => "Project destroyed"
+  private
+
+  def must_be_creator
+    @project = Project.find(params[:id]) # notice how we set @project here, and don't need to do it later
+    redirect_to @project, :alert => "Access Denied" unless @project.user == current_user
   end
 end
