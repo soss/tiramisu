@@ -26,13 +26,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
-    must_be_creator    
+    @project = Project.find(params[:id])  
   end
 
   def update
     @project = Project.find(params[:id])
-    must_be_creator
     if @project.update_attributes(params[:project])
       redirect_to @project, :notice => "Project Updated"
     else
@@ -42,7 +40,6 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    must_be_creator
     if @project.destroy
       redirect_to root_url, :notice => "Project destroyed"
     else
