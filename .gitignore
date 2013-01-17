@@ -14,5 +14,8 @@
 /log/*.log
 /tmp
 
-# ignore database config
+# Ignore database config
 /config/database.yml
+
+# Ignore secret token
+/config/secret.token

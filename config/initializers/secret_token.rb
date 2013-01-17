@@ -4,4 +4,9 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Tiramisu::Application.config.secret_token = '6c252cc423b988674e4f76738e80bb16e5bca8bb1f0598da414b9f7edfedaf99a41d2a0ef1f892874a3834f6ffe5045c34db633a3bc65dc1f94b8f269f151fbc'
+
+# https://github.com/GreenplumChorus/chorus/
+token_file = Rails.root.join('config/secret.token')
+abort "No config/secret.token file found.  Run rake development:generate_secret_token" unless token_file.exist?
+
+Tiramisu::Application.config.secret_token = token_file.read
