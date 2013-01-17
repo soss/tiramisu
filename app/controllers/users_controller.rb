@@ -12,6 +12,7 @@ class UsersController < ApplicationController
       end
     else
       render :action => "edit", :notice => 'Login as user.'
+    end
   end
 
   def projects
