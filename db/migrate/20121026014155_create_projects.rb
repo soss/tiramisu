@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration
       t.string :description
       t.text :long_description
       t.string :language
-      t.integer :creator
+      t.integer :user_id
       t.boolean :accepted
       t.date :accepted_date
 

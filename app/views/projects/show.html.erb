@@ -1,6 +1,5 @@
-<h1><%= @project.name %> <small>an idea by <%= @project.creator %></small></h1>
+<h1><%= @project.name %> <small>an idea by <%= @project.user.username %></small></h1>
 <h3><%= @project.description %></h3>
 <p><%= @project.long_description %></p>
-
 <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
 <%= link_to "Delete", @project, :method => "delete", :confirm => "Are you sure?", :class => "btn btn-danger" %>
