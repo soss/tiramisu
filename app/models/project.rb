@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
-  attr_accessible :accepted, :accepted_date, :creator, :description, :language, :long_description, :name
+  attr_accessible :description, :language, :long_description, :name
+  # we don't want to allow mass-assignment for accepted, user_id, etc.
 
   has_many :votes
-  belongs_to :user, :foreign_key => :user_id
+  belongs_to :user
 end
