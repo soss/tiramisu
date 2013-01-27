@@ -47,6 +47,20 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def promote
+    @project = Project.find(params[:id])
+
+    # refactor
+    @vote = Vote.new
+    @vote.user = current_user
+    @vote.project = @project
+    @vote.save
+
+    @points = @project.votes.count + 1
+
+    render 'promote.js'
+  end
+
   private
 
   def must_be_creator

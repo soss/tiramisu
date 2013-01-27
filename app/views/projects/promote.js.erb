@@ -1,0 +1,3 @@
+$("#<%= dom_id(@project) %> .promote a").addClass('disabled');
+$("#<%= dom_id(@project) %> .score").text("<%= @points %>");
+$("#<%= dom_id(@project) %> .suffix").text("<%= 'vote'.pluralize(@points) %>");
