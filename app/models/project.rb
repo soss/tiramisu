@@ -4,4 +4,9 @@ class Project < ActiveRecord::Base
 
   has_many :votes, :dependent => :destroy
   belongs_to :user
+
+  def promoted_by?(user)
+    self.votes.where(:user_id => user).any?
+  end
+
 end
