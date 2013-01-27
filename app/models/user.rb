@@ -8,4 +8,5 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :username
 
   has_many :projects, :dependent => :destroy
+  has_many :votes, :dependent => :destroy
 end
