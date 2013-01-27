@@ -27,31 +27,31 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/">Tiramisu</a>
-    <div class="nav-collapse collapse">
-      <% if current_user %>
-            <ul class="nav">
-              <li><%= link_to "New Project", new_project_path %></li>
-              <li><%= link_to "My Projects", new_project_path %></li>
-            </ul>
-      <div class="pull-right">
-              <ul class="nav pull-right">
-                 <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <%= current_user.username %> <b class="caret"></b></a>
-                   <ul class="dropdown-menu">
-                     <li><%= link_to "Prefrences", logout_path %><i class="icon-cog"></i></li>
-                       <li class="divider"></li>
-                       <li><%= link_to "Sign out", logout_path %><i class="icon-off"></i></li>
-                   </ul>
-                 </li>
+          <div class="nav-collapse collapse">
+            <% if current_user %>
+              <ul class="nav">
+                <li><%= link_to "New Project", new_project_path %></li>
+                <li><%= link_to "My Projects", new_project_path %></li>
               </ul>
-            </div>
-      <% else%>
-      <div class="pull-right">
-        <ul class="nav">
-                <li><%= link_to "Log In", login_path %></li>
-    <li><%= link_to "Sign up", signup_path %></li>
-       </ul>
-      </div>
-      <% end %>
+              <div class="pull-right">
+                <ul class="nav pull-right">
+                   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <%= current_user.username %> <b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                       <li><%= link_to "Prefrences", logout_path %></li>
+                         <li class="divider"></li>
+                         <li><%= link_to "Sign out", logout_path %></li>
+                     </ul>
+                   </li>
+                </ul>
+              </div>
+            <% else %>
+              <div class="pull-right">
+                <ul class="nav">
+                  <li><%= link_to "Log In", login_path %></li>
+                  <li><%= link_to "Sign up", signup_path %></li>
+                </ul>
+              </div>
+            <% end %>
           </div><!--/.nav-collapse -->
   </div>
       </div>
