@@ -1,20 +1,3 @@
 <% @projects.each do |project| %>
-	<%= div_for project do %>
-    <div class="numbers">
-      <div class="score"><%= project.votes.count + 1 %></div>
-      <div class="suffix"><%= 'vote'.pluralize project.votes.count + 1 %></div>
-      <div class="promote">
-        <a class="btn btn-success">Promote</a>
-      </div>
-    </div>
-
-    <div class="body">
-      <h3><%= link_to project.name, project %></h3>
-      <div class="info">
-        <p>A <%= project.language %> project by <%= project.user.username %>.</p>
-        <%= project.description %>
-      </div>
-    </div>
-    <div class="clear"></div>
-	<% end %>
+	<%= render project %>
 <% end %>
