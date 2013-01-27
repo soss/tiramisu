@@ -1,3 +1,31 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.project {
+  .numbers {
+    width: 100px;
+    height: 100px;
+    float: left;
+    background-color: #ddd;
+    margin: 0 20px 20px 0;
+    padding: 10px;
+
+    .score {
+      font-size: 30px;
+      text-align: center;
+      margin: 5px 0 10px 0;
+    }
+
+    .suffix {
+      text-align: center;
+    }
+
+    .promote {
+      width: 80px;
+      margin: 10px auto 0 auto;
+    }
+  }
+
+  margin-bottom: 20px;
+}
