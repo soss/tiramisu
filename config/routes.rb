@@ -7,7 +7,7 @@ Tiramisu::Application.routes.draw do
   resources :users
   resources :sessions
   resources :projects
-  post '/votes' => 'votes#create'
+  post '/projects/:id/promote' => 'projects#promote', :as => 'promote_project'
 
   get '/:username/projects' => 'users#projects', :as => 'user_projects'
 
