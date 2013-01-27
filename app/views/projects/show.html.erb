@@ -1,5 +1,15 @@
-<h1><%= @project.name %> <small>an idea by <%= @project.user.username %></small></h1>
-<h3><%= @project.description %></h3>
-<p><%= @project.long_description %></p>
-<%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
-<%= link_to "Delete", @project, :method => "delete", :confirm => "Are you sure?", :class => "btn btn-danger" %>
+<%= render @project %>
+
+<div>
+  <%= @project.long_description %>
+</div>
+
+<% if current_user == @project.user %>
+  <div class="controls">
+    <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
+    <%= link_to "Delete", @project, 
+                :method => "delete", :confirm => "Are you sure?", :class => "btn btn-danger" %>
+  </div>
+<% end %>
+
+<h3>This is where comments will go</h3>
