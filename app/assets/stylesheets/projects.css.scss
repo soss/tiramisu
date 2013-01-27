@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .project {
+
   .numbers {
     width: 100px;
     height: 100px;
@@ -27,5 +28,21 @@
     }
   }
 
+  .body {
+    width: 75%;
+    display: inline-block;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
   margin-bottom: 20px;
+}
+
+@media(max-width: 600px) {
+  .project .body {
+    display: block;
+    width: auto;
+  }
 }
