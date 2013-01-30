@@ -20,7 +20,7 @@
     <div class="pledges">
       <h6><%= project.pledges.count %> <%= "pledge".pluralize(project.pledges.count) %> including</h6>
       <% project.pledges.each do |pledge| %>
-        <a href="<%= user_path(pledge.user) %>">
+        <a class="pledge_<%= pledge.user_id %>" href="<%= user_path(pledge.user) %>">
           <%= image_tag gravatar_url(pledge.user, 40) %>
         </a>
       <% end %>

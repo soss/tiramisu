@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130130024320) do
 
-  create_table "pledges", :id => false, :force => true do |t|
+  create_table "pledges", :force => true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at", :null => false

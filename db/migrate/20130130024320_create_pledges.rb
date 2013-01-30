@@ -1,6 +1,6 @@
 class CreatePledges < ActiveRecord::Migration
   def change
-    create_table :pledges, :id => false do |t|
+    create_table :pledges do |t|
       t.integer :user_id
       t.integer :project_id
 

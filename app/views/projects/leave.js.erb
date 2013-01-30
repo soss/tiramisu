@@ -1,0 +1,5 @@
+$('.pledges h6').text("<%= @project.pledges.count %> <%= 'pledge'.pluralize(@project.pledges.count) %> including");
+$('.pledges').find('.pledge_<%= current_user.id %>').fadeOut(250);
+
+$('.membership a').text('Join this project');
+$('.membership a').attr('href', '<%= pledge_project_path(@project) %>');

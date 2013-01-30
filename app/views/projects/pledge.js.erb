@@ -1,0 +1,11 @@
+$('.pledges h6').text("<%= @project.pledges.count %> <%= 'pledge'.pluralize(@project.pledges.count) %> including");
+var new_user = $('<a></a>').addClass('pledge_<%= current_user.id %>')
+                           .attr('href', '<%= user_path(current_user) %>')
+                           .html('<%= image_tag gravatar_url(current_user, 40) %>')
+                           .css('display', 'none');
+
+$('.pledges').append(new_user);
+$(new_user).fadeIn(250);
+
+$('.membership a').text('Leave this project');
+$('.membership a').attr('href', '<%= leave_project_path(@project) %>');

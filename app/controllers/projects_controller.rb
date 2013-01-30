@@ -72,7 +72,7 @@ class ProjectsController < ApplicationController
 
   def leave
     @project = Project.find(params[:id])
-    @project.pledges.where(:user_id => current_user).destroy
+    @project.pledges.where(:user_id => current_user).first.destroy
 
     render 'leave.js'
   end
