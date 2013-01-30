@@ -56,28 +56,25 @@ class ProjectsController < ApplicationController
 
   def promote
     @project = Project.find(params[:id])
+    @project.votes.create(:user_id => current_user.id)
 
-    # refactor
-    @vote = Vote.new
-    @vote.user = current_user
-    @vote.project = @project
-    @vote.save
-
-    @points = @project.votes.count + 1
+    @points = @project.votes.count
 
     render 'promote.js'
   end
 
   def pledge
     @project = Project.find(params[:id])
-
-    # refactor
-    @pledge = Pledge.new
-    @pledge.user = current_user
-    @pledge.project = @project
-    @pledge.save
+    @project.pledges.create(:user_id => current_user.id)
 
     render 'pledge.js'
+  end
+
+  def leave
+    @project = Project.find(params[:id])
+    @project.pledges.where(:user_id => current_user).destroy
+
+    render 'leave.js'
   end
 
   private

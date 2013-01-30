@@ -10,6 +10,7 @@ Tiramisu::Application.routes.draw do
 
   post '/projects/:id/promote' => 'projects#promote', :as => 'promote_project'
   post '/projects/:id/pledge'  => 'projects#pledge', :as => 'pledge_project'
+  post '/projects/:id/leave'   => 'projects#leave', :as => 'leave_project'
 
   get '/:username/projects' => 'users#projects', :as => 'user_projects'
 

@@ -10,4 +10,8 @@ class Project < ActiveRecord::Base
     self.votes.where(:user_id => user).any?
   end
 
+  def pledged_by?(user)
+    self.pledges.where(:user_id => user).any?
+  end
+
 end

@@ -4,6 +4,21 @@
   <div class="numbers clear"></div>
 
   <div class="body">
+
+    <% if current_user %>
+      <div class="membership">
+        <% if !@project.pledged_by?(current_user) %>
+          <%= link_to 'Join this project', pledge_project_path(@project),
+                      :class => 'btn btn-large btn-info',
+                      :remote => true, :method => :post %>
+        <% else %>
+          <%= link_to 'Leave this project', leave_project_path(@project),
+                      :class => 'btn btn-large btn-info',
+                      :remote => true, :method => :post %>
+        <% end %>
+      </div>
+    <% end %>
+
     <div>
       <%= markdown @project.long_description %>
     </div>

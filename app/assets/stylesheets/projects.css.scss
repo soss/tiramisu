@@ -4,10 +4,6 @@
 
 .project {
 
-  &.push {
-    margin-top: 20px;
-  }
-
   .numbers {
     width: 120px;
     height: 120px;
@@ -51,6 +47,10 @@
 
     .info {
       margin-bottom: 15px;
+    }
+
+    .membership {
+      margin-bottom: 35px;
     }
 
     .controls {
