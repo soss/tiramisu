@@ -61,6 +61,18 @@ class ProjectsController < ApplicationController
     render 'promote.js'
   end
 
+  def pledge
+    @project = Project.find(params[:id])
+
+    # refactor
+    @pledge = Pledge.new
+    @pledge.user = current_user
+    @pledge.project = @project
+    @pledge.save
+
+    render 'pledge.js'
+  end
+
   private
 
   def must_be_creator

@@ -1,14 +1,15 @@
 Tiramisu::Application.routes.draw do
 
-  get 'logout' => 'sessions#destroy', :as => 'logout'
-  get 'login' => 'sessions#new', :as => 'login'
-  get 'signup' => 'users#new', :as => 'signup'
+  get 'logout'  => 'sessions#destroy', :as => 'logout'
+  get 'login'   => 'sessions#new', :as => 'login'
+  get 'signup'  => 'users#new', :as => 'signup'
   
   resources :users
   resources :sessions
   resources :projects
 
   post '/projects/:id/promote' => 'projects#promote', :as => 'promote_project'
+  post '/projects/:id/pledge'  => 'projects#pledge', :as => 'pledge_project'
 
   get '/:username/projects' => 'users#projects', :as => 'user_projects'
 
