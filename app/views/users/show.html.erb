@@ -1,0 +1,16 @@
+<div id="left-col">
+  <%= image_tag gravatar_url(@user, 180), :class => 'profile-img' %>
+</div>
+
+<div id="right-col">
+  <h1><%= @user.username %></h1>
+
+  <div class="profile-contact">
+    <%= link_to 'Contact', "mailto:#{@user.email}" %>
+  </div>
+
+  <h3><%= "#{@user.username}'s Projects" %></h3>
+  <% @user.projects.each do |project| %>
+    <%= render project %>
+  <% end %>
+</div>
