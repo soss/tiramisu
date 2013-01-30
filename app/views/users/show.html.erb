@@ -9,7 +9,7 @@
     <%= link_to 'Contact', "mailto:#{@user.email}" %>
   </div>
 
-  <h3><%= "#{@user.username}'s Projects" %></h3>
+  <h3><%= "#{@user.username} is working on:" %></h3>
   <% @user.pledges.each do |pledge| %>
     <%= render pledge.project %>
   <% end %>
