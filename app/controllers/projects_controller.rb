@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
-
   before_filter :must_be_creator, :only => [:edit, :update, :destroy]
 
   def index
@@ -86,6 +85,7 @@ class ProjectsController < ApplicationController
   private
 
   def must_be_creator
+    return if current_user_admin?
     @project = Project.find(params[:id]) # notice how we set @project here, and don't need to do it later
     redirect_to @project, :alert => "Access Denied" unless @project.user == current_user
   end

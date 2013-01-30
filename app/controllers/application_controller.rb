@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :current_user_admin?
+
+  def current_user_admin?
+    current_user && current_user.role == 1
+  end
+
   private
 
   def not_authenticated
