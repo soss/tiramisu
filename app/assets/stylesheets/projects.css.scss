@@ -4,18 +4,26 @@
 
 .project {
 
+  &.push {
+    margin-top: 20px;
+  }
+
   .numbers {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     float: left;
     background-color: #ddd;
     margin: 0 20px 20px 0;
     padding: 10px;
 
+    &.clear {
+      background-color: #fff;
+    }
+
     .score {
       font-size: 30px;
       text-align: center;
-      margin: 5px 0 10px 0;
+      margin: 15px 0 10px 0;
     }
 
     .suffix {
@@ -33,11 +41,20 @@
     display: inline-block;
 
     h3 {
+      margin: 0 15px 5px 0;
+      display: inline-block;
+    }
+
+    h6 {
       margin: 0;
     }
 
     .info {
-      margin-bottom: 25px;
+      margin-bottom: 15px;
+    }
+
+    .controls {
+      margin: 20px 0;
     }
   }
 

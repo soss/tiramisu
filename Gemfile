@@ -6,6 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'redcarpet', '~> 1.17.2'
 
 gem 'sorcery'
 # Gems used only for assets and not required

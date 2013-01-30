@@ -12,8 +12,8 @@
 
   <div class="body">
     <h3><%= link_to project.name, project %></h3>
+    <span>A <%= project.language %> project by <%= link_to project.user.username, project.user %></span>
     <div class="info">
-      <p>A <%= project.language %> project by <%= link_to project.user.username, project.user %></p>
       <%= project.description %>
     </div>
 

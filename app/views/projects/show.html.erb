@@ -1,15 +1,21 @@
 <%= render @project %>
 
-<div>
-  <%= @project.long_description %>
-</div>
+<div class="project push">
+  <div class="numbers clear"></div>
 
-<% if current_user == @project.user %>
-  <div class="controls">
-    <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
-    <%= link_to "Delete", @project, 
-                :method => "delete", :confirm => "Are you sure?", :class => "btn btn-danger" %>
+  <div class="body">
+    <div>
+      <%= markdown @project.long_description %>
+    </div>
+
+    <% if current_user == @project.user %>
+      <div class="controls">
+        <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
+        <%= link_to "Delete", @project, 
+                    :method => "delete", :confirm => "Are you sure?", :class => "btn btn-danger" %>
+      </div>
+    <% end %>
+
+    <h3>This is where comments will go</h3>
   </div>
-<% end %>
-
-<h3>This is where comments will go</h3>
+</div>

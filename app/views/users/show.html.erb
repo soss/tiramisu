@@ -10,7 +10,7 @@
   </div>
 
   <h3><%= "#{@user.username}'s Projects" %></h3>
-  <% @user.projects.each do |project| %>
-    <%= render project %>
+  <% @user.pledges.each do |pledge| %>
+    <%= render pledge.project %>
   <% end %>
 </div>
