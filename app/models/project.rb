@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   # we don't want to allow mass-assignment for accepted, user_id, etc.
 
   has_many :votes, :dependent => :destroy
+  has_many :pledges, :dependent => :destroy
   belongs_to :user
 
   def promoted_by?(user)
