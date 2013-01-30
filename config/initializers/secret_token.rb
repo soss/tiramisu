@@ -5,8 +5,6 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 
-# https://github.com/GreenplumChorus/chorus/
-token_file = Rails.root.join('config/secret.token')
-abort "No config/secret.token file found.  Run rake development:generate_secret_token" unless token_file.exist?
+abort "No secret token found. Run export TIRAMISU_SECRET_TOKEN=`rake secret`" unless ENV['TIRAMISU_SECRET_TOKEN']
 
-Tiramisu::Application.config.secret_token = token_file.read
+Tiramisu::Application.config.secret_token = ENV['TIRAMISU_SECRET_TOKEN']
