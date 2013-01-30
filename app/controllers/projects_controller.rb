@@ -18,7 +18,14 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(params[:project])
     @project.user = current_user
+
     if @project.save
+      # create a vote
+      @project.votes.create(:user_id => current_user.id)
+
+      # create a pledge
+      @project.pledges.create(:user_id => current_user.id)
+
       redirect_to root_url, :notice => "Created New Project"
     else
       render :new, :alert => "An error ocurred while creating the Project"

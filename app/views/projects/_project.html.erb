@@ -1,7 +1,7 @@
 <%= div_for project do %>
   <div class="numbers">
-    <div class="score"><%= project.votes.count + 1 %></div>
-    <div class="suffix"><%= 'vote'.pluralize project.votes.count + 1 %></div>
+    <div class="score"><%= project.votes.count %></div>
+    <div class="suffix"><%= 'vote'.pluralize project.votes.count %></div>
     <div class="promote">
       <%= link_to 'Promote', promote_project_path(project),
                   :class => 'btn btn-success' +
@@ -16,6 +16,16 @@
       <p>A <%= project.language %> project by <%= link_to project.user.username, project.user %></p>
       <%= project.description %>
     </div>
+
+    <div class="pledges">
+      <h6><%= project.pledges.count %> <%= "pledge".pluralize(project.pledges.count) %> including</h6>
+      <% project.pledges.each do |pledge| %>
+        <a href="<%= user_path(pledge.user) %>">
+          <%= image_tag gravatar_url(pledge.user, 40) %>
+        </a>
+      <% end %>
+    </div>
+
   </div>
   <div class="clear"></div>
 <% end %>
