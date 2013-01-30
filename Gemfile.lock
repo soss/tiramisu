@@ -68,6 +68,7 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
+    pg (0.14.1)
     polyglot (0.3.3)
     rack (1.4.4)
     rack-cache (1.2)
@@ -126,6 +127,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   mysql2
+  pg
   rails (= 3.2.11)
   redcarpet (~> 1.17.2)
   sass-rails (~> 3.2.3)

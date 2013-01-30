@@ -1,14 +1,9 @@
+# tiramisu
+
+![yum](http://25.media.tumblr.com/tumblr_lnxuvxa2NS1qebb05o1_500.jpg)
+
 ## TODO
 
 ### Short-term
-* fill the rest of form
-* basic stylesheet
-* more information on the project show
-* input validation
-* voting model / controller (AJAX)
-
-### Long-term
-* users
 * comments
 * documentation
-
