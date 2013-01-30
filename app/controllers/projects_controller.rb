@@ -73,11 +73,14 @@ class ProjectsController < ApplicationController
 
   def promote
     @project = Project.find(params[:id])
-    @project.votes.create(:user_id => current_user.id)
 
-    @points = @project.votes.count
-
-    render 'promote.js'
+    unless @project.votes.where(:user_id => current_user).any?
+      @project.votes.create(:user_id => current_user.id)
+      @points = @project.votes.count
+      render 'promote.js'
+    else
+      render :js => 'console.log("ha!")'
+    end
   end
 
   def pledge
