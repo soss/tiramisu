@@ -19,3 +19,6 @@
 
 # Ignore secret token
 /config/secret.token
+
+#ignore mac DS_Stores
+*.DS_STORE
