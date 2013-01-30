@@ -1,12 +1,13 @@
 Tiramisu::Application.routes.draw do
 
-  get "logout" => "sessions#destroy", :as => "logout"
-  get "login" => "sessions#new", :as => "login"
-  get "signup" => "users#new", :as => "signup"
+  get 'logout' => 'sessions#destroy', :as => 'logout'
+  get 'login' => 'sessions#new', :as => 'login'
+  get 'signup' => 'users#new', :as => 'signup'
   
   resources :users
   resources :sessions
   resources :projects
+
   post '/projects/:id/promote' => 'projects#promote', :as => 'promote_project'
 
   get '/:username/projects' => 'users#projects', :as => 'user_projects'
@@ -58,11 +59,11 @@ Tiramisu::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   # just remember to delete public/index.html.
   root :to => 'projects#index'
 
-  # See how all your routes lay out with "rake routes"
+  # See how all your routes lay out with 'rake routes'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.

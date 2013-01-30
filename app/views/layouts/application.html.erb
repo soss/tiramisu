@@ -17,7 +17,7 @@
     <![endif]-->
   </head>
 
-<body>
+  <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
@@ -53,29 +53,29 @@
               </div>
             <% end %>
           </div><!--/.nav-collapse -->
-  </div>
+        </div>
       </div>
     </div>
 
-  <div class="alerts container">
-    <% if flash[:alert] %>
-      <div class="alert alert-error">
-        <%= flash[:alert] %>
-        <button type="button" class="close" data-dismiss="alert">×</button>
-      </div>
-    <% end %>
+    <div class="alerts container">
+      <% if flash[:alert] %>
+        <div class="alert alert-error">
+          <%= flash[:alert] %>
+          <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+      <% end %>
 
-    <% if flash[:notice] %>
-      <div class="alert alert-info">
-        <%= flash[:notice] %>
-        <button type="button" class="close" data-dismiss="alert">×</button>
-      </div>
-    <% end %>
-  </div>
+      <% if flash[:notice] %>
+        <div class="alert alert-info">
+          <%= flash[:notice] %>
+          <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="container">
-    <%= yield %>
-  </div>
+    <div class="container">
+      <%= yield %>
+    </div>
 
-</body>
+  </body>
 </html>

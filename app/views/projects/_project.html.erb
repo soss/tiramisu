@@ -4,7 +4,8 @@
     <div class="suffix"><%= 'vote'.pluralize project.votes.count + 1 %></div>
     <div class="promote">
       <%= link_to 'Promote', promote_project_path(project),
-                  :class => 'btn btn-success' + (project.promoted_by?(current_user) ? ' disabled' : ''),
+                  :class => 'btn btn-success' +
+                    (!current_user || project.promoted_by?(current_user) ? ' disabled' : ''),
                   :remote => true, :method => :post %>
     </div>
   </div>
