@@ -1,13 +1,31 @@
 class ProjectsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
+  before_filter :admin_only, :only => [:moderate, :approve]
   before_filter :must_be_creator, :only => [:edit, :update, :destroy]
 
   def index
     @projects = Project.where(:approved => true)
   end
 
+  def moderate
+    @projects = Project.where(:approved => false)
+
+    render 'index'
+  end
+
+  def approve
+    @project = Project.find(params[:id])
+    @project.approved = true
+    @project.save
+
+    redirect_to @project, :notice => 'Project has been approved!'
+  end
+
   def show
     @project = Project.find(params[:id])
+    unless current_user_admin? || @project.approved
+      redirect_to projects_path, :alert => 'That project is not quite ready for the spotlight'
+    end
   end
 
   def new

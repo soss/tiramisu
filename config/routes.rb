@@ -12,6 +12,9 @@ Tiramisu::Application.routes.draw do
   post '/projects/:id/pledge'  => 'projects#pledge', :as => 'pledge_project'
   post '/projects/:id/leave'   => 'projects#leave', :as => 'leave_project'
 
+  get '/moderate' => 'projects#moderate', :as => 'moderate'
+  post '/projects/:id/approve' => 'projects#approve', :as => 'approve_project'
+
   get '/:username/projects' => 'users#projects', :as => 'user_projects'
 
   # The priority is based upon order of creation:

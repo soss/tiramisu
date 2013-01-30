@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
     current_user && current_user.role == 1
   end
 
+  def admin_only
+    unless current_user_admin?
+      redirect_to root_url, :alert => "You do not have access to this page"
+    end
+  end
+
   private
 
   def not_authenticated
