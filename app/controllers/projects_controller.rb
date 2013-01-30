@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :must_be_creator, :only => [:edit, :update, :destroy]
 
   def index
-    @projects = Project.all
+    @projects = Project.where(:approved => true)
   end
 
   def show
@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
       # create a pledge
       @project.pledges.create(:user_id => current_user.id)
 
-      redirect_to root_url, :notice => "Created New Project"
+      redirect_to root_url, :notice => "Got it! Your entry is currently waiting approval"
     else
       render :new, :alert => "An error ocurred while creating the Project"
     end
@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
-      redirect_to @project, :notice => "Project Updated"
+      redirect_to @project, :notice => "Project updated successfully"
     else
       redirect_to @project, :alert => "An error ocurred while updating the Project"
     end
