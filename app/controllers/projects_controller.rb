@@ -65,16 +65,22 @@ class ProjectsController < ApplicationController
 
   def pledge
     @project = Project.find(params[:id])
-    @project.pledges.create(:user_id => current_user.id)
-
-    render 'pledge.js'
+    
+    unless @project.pledges.where(:user_id => current_user).any?
+      @project.pledges.create(:user_id => current_user.id)
+      render 'pledge.js'
+    else
+      render :js => 'console.log("ha!")'
+    end
   end
 
   def leave
     @project = Project.find(params[:id])
-    @project.pledges.where(:user_id => current_user).first.destroy
-
-    render 'leave.js'
+    if @project.pledges.where(:user_id => current_user).first.try(:destroy)
+      render 'leave.js'
+    else
+      render :js => 'console.log("ha!")'
+    end
   end
 
   private
