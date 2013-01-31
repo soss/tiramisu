@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, :except => [:new, :create]
+  before_filter :require_login, :only => [:update]
 
   def new
     @user = User.new
@@ -18,11 +18,6 @@ class UsersController < ApplicationController
     else
       render :action => "edit", :notice => 'Login as user.'
     end
-  end
-
-  def projects
-    @user = User.find_by_username(params[:username])
-    @projects = @user.projects
   end
 
   def create
