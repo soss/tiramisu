@@ -1,5 +1,5 @@
 <div id="left-col">
-  <div class="<%= 'tooltipme' if @user == current_user %> profile-img" data-title="Change your avatar at gravatar.com">
+  <div class="<%= 'tooltipme ' if @user == current_user %>profile-img" data-title="Change your avatar at gravatar.com">
     <a href="http://gravatar.com/emails">
       <%= image_tag gravatar_url(@user, 180) %>
     </a>
