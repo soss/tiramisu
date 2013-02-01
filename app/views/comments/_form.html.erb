@@ -1,5 +1,7 @@
-<%= form_tag project_comments_path(@project) do %>
-  <%= text_area_tag 'comment[content]' %>
+<% # TODO: this is kind of gross %>
+<% #  the pair is generated dynamically, whether we are writing a new comment, or editing one %>
+<%= form_for [@project || @comment.project, @comment || @project.comments.build] do |f| %>
+  <%= f.text_area :content %>
 
-  <%= submit_tag 'Post' %>
+  <%= f.submit 'Save' %>
 <% end %>
