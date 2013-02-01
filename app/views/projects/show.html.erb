@@ -41,6 +41,9 @@
       <%= render comment %>
     <% end %>
 
-    <%= render 'comments/form' %>
+    <% if current_user %>
+      <p>Post a new comment:</p>
+      <%= render 'comments/form' %>
+    <% end %>
   </div>
 </div>

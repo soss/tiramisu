@@ -1,9 +1,23 @@
 <%= div_for comment do %>
-  <%= image_tag gravatar_url(comment.user) %>
-  <p><%= comment.content %></p>
+  <div class="leftcol">
+    <a href="<%= user_path(comment.user) %>">
+      <%= image_tag gravatar_url(comment.user) %>
+    </a>
+  </div>
 
-  <% if current_user_admin? || comment.user == current_user %>
-    <%= link_to 'Edit', project_edit_comment_path(@project, comment) %>
-    <%= link_to 'Destroy', project_comment_path(@project, comment), :method => :delete, :confirm => 'Are you sure?' %>
-  <% end %>
+  <div class="pull-right">
+    <% if current_user_admin? || comment.user == current_user %>
+      <%= link_to 'Edit', project_edit_comment_path(@project, comment) %>
+      <%= link_to 'Destroy', project_comment_path(@project, comment), :method => :delete, :confirm => 'Are you sure?' %>
+    <% end %>
+  </div>
+
+  <div class="rightcol">
+    <div class="comment-user">
+      <b><%= link_to comment.user.username, comment.user %></b>
+    </div>
+
+    <div class="comment-body"><%= markdown comment.content %></div>
+  </div>
+  <div class="clear"></div>
 <% end %>

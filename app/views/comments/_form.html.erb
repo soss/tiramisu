@@ -1,7 +1,7 @@
 <% # TODO: this is kind of gross %>
 <% #  the pair is generated dynamically, whether we are writing a new comment, or editing one %>
 <%= form_for [@project || @comment.project, @comment || @project.comments.build] do |f| %>
-  <%= f.text_area :content %>
+  <%= f.text_area :content %><br />
 
   <%= f.submit 'Save' %>
 <% end %>
