@@ -9,7 +9,7 @@ Tiramisu::Application.routes.draw do
   resources :projects do
     post 'comments' => 'comments#create', :as => 'comments'
     get  'comments/:id/edit' => 'comments#edit', :as => 'edit_comment'
-    put  'comments/:id' => 'comments#update'
+    put  'comments/:id' => 'comments#update', :as => 'comment'
     delete 'comments/:id' => 'comments#destroy'
   end
 

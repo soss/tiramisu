@@ -1,0 +1,5 @@
+<%= form_for [@comment.project, @comment] do |f| %>
+  <%= f.text_area :content %>
+
+  <%= f.submit 'Save' %>
+<% end %>
