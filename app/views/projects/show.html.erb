@@ -36,5 +36,11 @@
     <% end %>
 
     <!-- place comments here -->
+    <h3>Showing <%= @project.comments.count %> <%= 'comment'.pluralize(@project.comments.count) %></h3>
+    <% @project.comments.each do |comment| %>
+      <%= render comment %>
+    <% end %>
+
+    <%= render 'comments/form' %>
   </div>
 </div>

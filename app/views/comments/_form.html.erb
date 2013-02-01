@@ -1,0 +1,5 @@
+<%= form_tag project_comments_path(@project) do %>
+  <%= text_area_tag 'comment[content]' %>
+
+  <%= submit_tag 'Post' %>
+<% end %>

@@ -1,0 +1,4 @@
+<%= div_for comment do %>
+  <%= image_tag gravatar_url(comment.user) %>
+  <p><%= comment.content %></p>
+<% end %>

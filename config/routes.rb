@@ -6,7 +6,12 @@ Tiramisu::Application.routes.draw do
   
   resources :users
   resources :sessions
-  resources :projects
+  resources :projects do
+    post 'comments' => 'comments#create', :as => 'comments'
+    get  'comments/:id/edit' => 'comments#edit', :as => 'edit_comment'
+    put  'comments/:id' => 'comments#update'
+    delete 'comments/:id' => 'comments#destroy'
+  end
 
   post '/projects/:id/promote' => 'projects#promote', :as => 'promote_project'
   post '/projects/:id/pledge'  => 'projects#pledge', :as => 'pledge_project'
