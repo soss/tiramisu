@@ -4,6 +4,7 @@ class Project < ActiveRecord::Base
 
   has_many :votes, :dependent => :destroy
   has_many :pledges, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   belongs_to :user
 
   def promoted_by?(user)
