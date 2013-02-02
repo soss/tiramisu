@@ -16,7 +16,7 @@
   <% if @user.pledges.any?  %>
 	  <h3><%= "#{@user.username} is working on:" %></h3>
 	  <% @user.pledges.each do |pledge| %>
-	    <%= render pledge.project %>
+	    <%= render pledge.project if pledge.project.approved %>
 	  <% end %>
   <% else %>
 	  <h3><%= "#{@user.username} is not working on anything right now." %></h3>
