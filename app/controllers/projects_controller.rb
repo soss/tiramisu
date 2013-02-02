@@ -4,10 +4,7 @@ class ProjectsController < ApplicationController
   before_filter :must_be_creator, :only => [:edit, :update, :destroy]
 
   def index
-    @projects = Project.where(:approved => true)
-                       .joins(:votes)
-                       .group(:id)
-                       .order('COUNT(*) DESC')
+    @projects = Project.sorted_by_votes
   end
 
   def moderate

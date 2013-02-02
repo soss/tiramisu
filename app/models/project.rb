@@ -7,6 +7,11 @@ class Project < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   belongs_to :user
 
+  scope :sorted_by_votes, where(:approved => true)
+                          .joins(:votes)
+                          .group(:id)
+                          .order('COUNT(*) DESC')
+
   def promoted_by?(user)
     self.votes.where(:user_id => user).any?
   end
