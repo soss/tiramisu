@@ -5,6 +5,9 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.where(:approved => true)
+                       .joins(:votes)
+                       .group(:id)
+                       .order('COUNT(*) DESC')
   end
 
   def moderate
