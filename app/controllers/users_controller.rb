@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   before_filter :require_login, :only => [:update]
+  before_filter :admin_only, :only => [:index, :destroy]
 
   def new
     @user = User.new
+  end
+
+  def index
+    @users = User.all
   end
 
   def show
@@ -28,6 +33,16 @@ class UsersController < ApplicationController
       redirect_to root_url, :notice => "Signed, Up!"
     else
       render :new
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+
+    if @user.role != 1 && @user.destroy
+      redirect_to users_path, :notice => 'User destroyed'
+    else
+      redirect_to users_path, :alert => 'Could not destroy user'
     end
   end
 end

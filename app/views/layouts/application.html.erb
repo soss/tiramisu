@@ -34,6 +34,7 @@
                 <li><%= link_to "Profile", user_path(current_user) %></li>
                 <% if current_user_admin? %>
                   <li><%= link_to "Moderate", moderate_path %></li>
+                  <li><%= link_to "Manage Users", users_path %></li>
                 <% end %>
               </ul>
               <div class="pull-right">
