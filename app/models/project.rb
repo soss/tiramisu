@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
 
   scope :sorted_by_votes, where(:approved => true)
                           .joins(:votes)
-                          .group(:id)
+                          .group('projects.id')
                           .order('COUNT(*) DESC')
 
   def promoted_by?(user)
