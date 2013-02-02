@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 	validates :password, :length => { :in => 5..32 }
 
 	validates_format_of :username, :password, :with => /\A\w*\Z/
-	validates_format_of :email, :with => /\A\w+\.\w+\Z/
+	validates_format_of :email, :with => /\A[\w\+\.]+@[\w\-]+\.\w+\Z/
 
   has_many :projects, :dependent => :destroy
   has_many :votes, :dependent => :destroy
