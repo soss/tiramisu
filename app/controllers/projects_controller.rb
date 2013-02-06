@@ -44,8 +44,7 @@ class ProjectsController < ApplicationController
       @project.pledges.create(:user_id => current_user.id)
 
       # send email to admin
-			url = "http://#{request.host}{request.fullpath}/#{@project.id}"
-			ProjectsMailer.project_email(@project, url).deliver
+			ProjectsMailer.project_email(@project).deliver
 			
 			redirect_to root_url, :notice => "Got it! Your entry is currently waiting approval"
     else

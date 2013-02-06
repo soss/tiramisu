@@ -17,6 +17,6 @@
 		<h3>Long Description</h3>
 		<%= @project.long_description %>
 		<br>
-		<h3>Click <%= link_to "here.", @url %> to approve this project!</h3>
+		<h3>Click <%= link_to "here", project_url(@project) %> to approve this project!</h3>
 	</body>
 </html>
