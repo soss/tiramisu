@@ -43,7 +43,10 @@ class ProjectsController < ApplicationController
       # create a pledge
       @project.pledges.create(:user_id => current_user.id)
 
-      redirect_to root_url, :notice => "Got it! Your entry is currently waiting approval"
+      # send email to admin
+			ProjectsMailer.project_email(@project).deliver
+			
+			redirect_to root_url, :notice => "Got it! Your entry is currently waiting approval"
     else
       render :new, :alert => "An error ocurred while creating the Project"
     end

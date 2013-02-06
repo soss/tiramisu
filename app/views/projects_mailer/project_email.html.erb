@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	</head>
+	
+	<body>
+		<section style="margin:10px;">
+			<h1>A new project has been created!</h1>
+			<img src=<%= gravatar_url(@user, 140)%> style="float:left;margin: 0px 10px;"/>
+			<br>
+			<h2> <%= @user.username %> has created <%= @project.name %></h2>
+			<h2>Language: <%= @project.language %></h2>
+		</section>
+		<br><br><br><br><br>	
+		<h3>Description:</h3>
+		<%= @project.description %>
+		<h3>Long Description</h3>
+		<%= @project.long_description %>
+	</body>
+</html>
