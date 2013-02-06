@@ -1,3 +1,7 @@
+<% if @projects.empty? %>
+  <p>Nothing to see here...</p>
+<% end %>
+
 <% @projects.each do |project| %>
 	<%= render project %>
 <% end %>
