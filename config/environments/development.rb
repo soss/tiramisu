@@ -19,6 +19,9 @@ Tiramisu::Application.configure do
 	# The type of mailer delivery
 	config.action_mailer.delivery_method = :smtp
 
+  # Host path for project links
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
 	#These options are only needed if you choose smtp delivery
 	config.action_mailer.smtp_settings = {
 		:address              => "smtp.gmail.com",

@@ -61,6 +61,26 @@ Tiramisu::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
+    # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = false
+
+  # The type of mailer delivery
+  config.action_mailer.delivery_method = :smtp
+
+  # Host path for project links
+  config.action_mailer.default_url_options = { :host => 'sossprojects.heroku.com' }
+
+  #These options are only needed if you choose smtp delivery
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'domain.pl',
+    :authentication       => "plain",
+    :enable_starttls_auto => true,
+    :user_name            => ENV['TIRAMISU_EMAIL_USER'],
+    :password             => ENV['TIRAMISU_EMAIL_PASS']
+  }
+
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
