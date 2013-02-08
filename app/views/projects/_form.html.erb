@@ -19,5 +19,11 @@
 
   <br /><br />
 
+  <% if !@project.new_record? && current_user_admin? %>
+    <%= f.label :user_id, 'Owner' %>
+    <%= f.select :user_id, options_for_select(User.all.map {|u| [u.username, u.id]}, @project.user_id) %>
+    <br /><br />
+  <% end %>
+
   <%= f.submit :class => "btn btn-primary" %>
 <% end %>

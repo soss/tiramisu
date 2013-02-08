@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
   before_filter :admin_only, :only => [:moderate, :approve]
   before_filter :must_be_creator, :only => [:edit, :update, :destroy]
+  before_filter :prevent_mass_assign, :only => [:create, :update]
 
   def index
     @projects = Project.sorted_by_votes
@@ -57,6 +58,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    # TODO: notify user when they gain ownership of a project?
     @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
       redirect_to @project, :notice => "Project updated successfully"
@@ -112,5 +114,11 @@ class ProjectsController < ApplicationController
     return if current_user_admin?
     @project = Project.find(params[:id]) # notice how we set @project here, and don't need to do it later
     redirect_to @project, :alert => "Access Denied" unless @project.user == current_user
+  end
+
+  def prevent_mass_assign
+    # if the user is not an admin, we remove :user_id from params
+    # TODO: more modernized approach
+    params[:project].delete(:user_id) unless current_user_admin?
   end
 end
