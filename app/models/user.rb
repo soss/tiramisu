@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, :username
 
   validates :username, :length => { :in => 3..20 }
-  validates :password, :length => { :in => 5..32 }
+  validates :password, :length => { :in => 5..82 }
 
-  validates_format_of :username, :password, :with => /\A\w*\Z/
+  validates_format_of :username, :password, :with => /\A.*\Z/
   validates_format_of :email, :with => /\A[\w\+\.]+@[\w\-]+\.\w+\Z/
 
   has_many :projects, :dependent => :destroy
