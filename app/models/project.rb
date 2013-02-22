@@ -7,6 +7,11 @@ class Project < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   belongs_to :user
 
+  validates :name, :length => { :in => 5..30 }
+  validates :description, :length => { :in => 5..30 }
+  validates :long_description, :length => { :in => 5..3000 }
+  validates :language, :length => { :in => 1..20 }
+
   scope :sorted_by_votes, where(:approved => true)
                           .joins(:votes)
                           .group('projects.id')
