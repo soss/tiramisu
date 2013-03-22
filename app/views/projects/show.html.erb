@@ -25,7 +25,9 @@
 
     <% if current_user == @project.user || current_user_admin? %>
       <div class="controls">
-        <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
+        <% if current_user_admin? %>
+          <%= link_to "Edit", edit_project_path(@project), :class => "btn btn-primary" %>
+        <% end %>
         <%= link_to "Delete", @project, 
                     :method => "delete", :confirm => "Are you sure?", :class => "btn btn-danger" %>
         <% if current_user_admin? && !@project.approved %>

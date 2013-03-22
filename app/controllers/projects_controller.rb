@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
-  before_filter :admin_only, :only => [:moderate, :approve]
-  before_filter :must_be_creator, :only => [:edit, :update, :destroy]
+  before_filter :admin_only, :only => [:edit, :update, :moderate, :approve]
+  before_filter :must_be_creator, :only => [:destroy]
   before_filter :prevent_mass_assign, :only => [:create, :update]
 
   def index
