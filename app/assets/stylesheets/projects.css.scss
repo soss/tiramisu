@@ -4,6 +4,8 @@
 
 .project {
 
+  padding: 5px;
+
   .numbers {
     width: 120px;
     height: 120px;
@@ -62,6 +64,10 @@
     .controls {
       margin: 20px 0;
     }
+  }
+
+  &.chosen {
+    border: 1px solid #51a351;
   }
 
   margin-bottom: 20px;

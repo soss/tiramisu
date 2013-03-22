@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :description, :language, :long_description, :name, :user_id
+  attr_accessible :description, :language, :long_description, :name, :user_id, :chosen
   # we don't want to allow mass-assignment for accepted, etc.
 
   has_many :votes, :dependent => :destroy
