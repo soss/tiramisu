@@ -1,4 +1,4 @@
-<%= div_for project do %>
+<%= div_for project, :class => (project.chosen ? 'chosen' : '') do %>
   <div class="numbers">
     <div class="score"><%= project.votes.count %></div>
     <div class="suffix"><%= 'vote'.pluralize project.votes.count %></div>

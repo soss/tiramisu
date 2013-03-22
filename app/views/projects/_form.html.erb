@@ -15,6 +15,13 @@
 
   <br /><br />
 
+  <% if defined?(form_type) && form_type == 'edit' %>
+    <%= f.check_box :chosen %>
+    <%= f.label :chosen %>
+
+    <br /><br />
+  <% end %>
+
   <%= f.label :description %>
   <%= f.text_field :description %>
 
