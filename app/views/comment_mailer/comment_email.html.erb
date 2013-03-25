@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	</head>
+	
+	<body>
+		<section style="margin:10px;">
+			<h1>Someone has commented has on your project!</h1>
+			<img src=<%= gravatar_url(@commenter, 140)%> style="float:left;margin: 0px 10px;"/>
+			<br>
+			<h2> <%= @commenter.username %> has created a comment on <%= @comment.project.name %></h2>
+		</section>
+		<br><br><br><br><br>	
+		<h3>Comment:</h3>
+		<%= @comment.content %>
+		<br>
+		<h3>Click <%= link_to "here", project_url(@comment.project) %> to respond to this comment!</h3>
+	</body>
+</html>
