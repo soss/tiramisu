@@ -5,6 +5,17 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
 
-abort "No secret token found. Run export TIRAMISU_SECRET_TOKEN=`rake secret`" unless ENV['TIRAMISU_SECRET_TOKEN']
+if Rails.env.development? || Rails.env.test?
+  # https://github.com/GreenplumChorus/chorus/
+  # For development || test environments
+  # Uses a file called secret.token which holds the token
+  # We utilize a rake task - generate_secret_token - to generate this file if it doesn't exist
+  token_file = Rails.root.join('config/secret.token')
+  abort "!! No config/secret.token file found. Please run \"rake development:generate_secret_token\"" unless token_file.exist?
 
-Tiramisu::Application.config.secret_token = ENV['TIRAMISU_SECRET_TOKEN']
+  Tiramisu::Application.config.secret_token = token_file.read
+elsif Rails.env.production?
+  abort "!! No secret token found. Run export TIRAMISU_SECRET_TOKEN=`rake secret`" unless ENV['TIRAMISU_SECRET_TOKEN']
+
+  Tiramisu::Application.config.secret_token = ENV['TIRAMISU_SECRET_TOKEN']
+end
