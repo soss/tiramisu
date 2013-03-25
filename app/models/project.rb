@@ -25,4 +25,11 @@ class Project < ActiveRecord::Base
     self.pledges.where(:user_id => user).any?
   end
 
+  # returns the list of emails of those who have pledged
+  #   to work on the project
+  # to be placed in a textarea or something
+  def mailing_list
+    self.pledges.collect(&:user).collect(&:email)
+  end
+
 end
