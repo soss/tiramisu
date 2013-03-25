@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      CommentMailer.comment_email(@comment).deliver
       redirect_to @comment.project, :notice => 'Comment saved!'
     else
       redirect_to @comment.project, :alert => 'Could not save comment'
