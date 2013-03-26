@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   belongs_to :user
 
   validates :name, :length => { :in => 5..30 }
-  validates :description, :length => { :in => 5..30 }
+  validates :description, :length => { :in => 5..140 }
   validates :long_description, :length => { :in => 5..3000 }
   validates :language, :length => { :in => 1..20 }
 
