@@ -1,0 +1,25 @@
+<div id="left-col">
+  <div class="<%= 'tooltipme ' if @user == current_user %>profile-img" data-title="Change your avatar at gravatar.com">
+    <a href="http://gravatar.com/emails">
+      <%= image_tag gravatar_url(@user, 180) %>
+    </a>
+  </div>
+</div>
+
+<div id="right-col">
+  <h1><%= @user.username %></h1>
+  <h1><%= @user.email %></h1>
+  <h1>Change email notification type</h1>
+  All Updates
+  Major updates
+  no updates
+  
+  <% if @user.pledges.any?  %>
+	  <h3><%= "#{@user.username} is working on:" %></h3>
+	  <% @user.pledges.each do |pledge| %>
+	    <%= render pledge.project if pledge.project.approved %>
+	  <% end %>
+  <% else %>
+	  <h3><%= "#{@user.username} is not working on anything right now." %></h3>
+  <% end %>
+</div>
