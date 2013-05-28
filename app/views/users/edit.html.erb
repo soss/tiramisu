@@ -1,0 +1,27 @@
+<div class="well span4">
+  <h2>Edit <% @user.username %></h2>
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @user.errors.full_messages %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.text_field :email, placeholder: "Change Email" %><br />
+
+    <%= f.password_field :old_password, placeholder: "Current Password" %><br />
+
+    <%= f.password_field :new_password, placeholder: "New Password" %><br />
+
+    <%= f.password_field :confirm_password, placeholder: "Password Again" %><br />
+
+    <%= f.select :notification, options_for_select([["All Emails", 2],["Some Emails", 1],["No emails", 0]], @user.notification) %>
+
+    <%= f.submit "Sign up", class: "btn-info btn" %>
+  <% end %>
+</div>
+

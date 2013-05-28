@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, :only => [:update]
+  before_filter :require_login, :only => [:update, :edit]
   before_filter :admin_only, :only => [:index, :destroy]
 
   def new
@@ -14,14 +14,40 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def update
-    @user = User.find_by_username(params[:username])
-    if current_user == @user
-      if @user.change_password!(params[:user][:password])
-        redirect_to(root_path, :notice => 'Password was successfully updated.')
+    user_params = params[:user]
+    @user = User.where(:email => user_params[:email]).first
+
+    #Current user changing password, email
+    if current_user.email == user_params[:email]
+
+      #Basic Input Validation
+      if user_params[:old_password] != "" &&  user_params[:new_password] != "" && user_params[:confirm_password] != ""
+
+        #Update Password
+        if current_user.update_password(user_params[:old_password], user_params[:new_password], user_params[:confirm_password])
+          redirect_to(user_path, :notice => 'Password was successfully updated.')
+          @user.update_attribute(:email, user_params[:email])
+          @user.update_attribute(:notification, user_params[:notification].to_i)
+        else
+          redirect_to( edit_user_path(current_user), :alert => 'New passwords do not match.')
+        end
       end
     else
-      render :action => "edit", :notice => 'Login as user.'
+
+      #Administrator Changing users password, email
+      if (current_user.role == 1 && @user != nil) || User.authenticate(user_params[:email], user_params[:old_password]).present?
+        @user.update_attribute(:email, user_params[:email])
+        @user.update_attribute(:notification, user_params[:notification].to_i)
+
+        redirect_to( root_url, :notice => "Settings changed")
+      else
+        redirect_to( edit_user_path(@user), :notice => 'Login as user or an Administrator.')
+      end
     end
   end
 
