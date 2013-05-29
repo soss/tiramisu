@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, :only => [:update]
+  before_filter :require_login, :only => [:update, :edit]
   before_filter :admin_only, :only => [:index, :destroy]
 
   def new
@@ -14,14 +14,36 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def update
-    @user = User.find_by_username(params[:username])
-    if current_user == @user
-      if @user.change_password!(params[:user][:password])
-        redirect_to(root_path, :notice => 'Password was successfully updated.')
+    @user = User.where(:email => params[:user][:email]).first
+    #Current user changing password, email, 
+
+    if current_user.email == params[:user][:email]
+      if params[:user][:old_password] != "" &&  params[:user][:new_password] != "" && params[:user][:confirm_password] != ""
+        if current_user.update_password(params[:user][:old_password], params[:user][:new_password], params[:user][:confirm_password])
+          redirect_to(user_path, :notice => 'Password was successfully updated.')
+        else
+          redirect_to( edit_user_path(current_user), :alert => 'New passwords do not match.')
+        end
+      else
+        @user.update_attribute(:email, params[:user][:email])
+        @user.update_attribute(:notification, params[:user][:notification].to_i)
+
+        redirect_to( root_url, :notice => "Settings changed")
       end
     else
-      render :action => "edit", :notice => 'Login as user.'
+      if (current_user.role == 1 && @user != nil) || User.authenticate(params[:user][:email], params[:user][:old_password]).present?
+        @user.update_attribute(:email, params[:user][:email])
+        @user.update_attribute(:notification, params[:user][:notification].to_i)
+
+        redirect_to( root_url, :notice => "Settings changed")
+      else
+        redirect_to( edit_user_path(@user), :notice => 'Login as user or an Administrator.')
+      end
     end
   end
 

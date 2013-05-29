@@ -28,6 +28,7 @@ Tiramisu::Application.routes.draw do
   post '/projects/:id/approve' => 'projects#approve', :as => 'approve_project'
 
   get '/:username/projects' => 'users#projects', :as => 'user_projects'
+  #get '/settings' => 'users#edit', :as => 'user_settings'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

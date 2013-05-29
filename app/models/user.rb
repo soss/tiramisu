@@ -19,4 +19,12 @@ class User < ActiveRecord::Base
 
   scope :admins, where(:role => 1)
   default_scope order('created_at ASC')
+
+  def update_password(current_password, new_password, new_password_confirmation)
+    if User.authenticate(self.username, current_password).present?
+      self.password_confirmation = new_password_confirmation #required for test purpose
+      self.change_password!(new_password)
+    end
+  end
+  
 end

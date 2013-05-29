@@ -1,25 +1,27 @@
-<div id="left-col">
-  <div class="<%= 'tooltipme ' if @user == current_user %>profile-img" data-title="Change your avatar at gravatar.com">
-    <a href="http://gravatar.com/emails">
-      <%= image_tag gravatar_url(@user, 180) %>
-    </a>
-  </div>
+<div class="well span4">
+  <h2>Edit <% @user.username %></h2>
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.text_field :email, placeholder: "Change Email" %><br />
+
+    <%= f.password_field :old_password, placeholder: "Current Password" %><br />
+
+    <%= f.password_field :new_password, placeholder: "New Password" %><br />
+
+    <%= f.password_field :confirm_password, placeholder: "Password Again" %><br />
+
+    <%= f.select :notification, options_for_select([["All Emails", 2],["Some Emails", 1],["No emails", 0]], @user.notification) %>
+
+    <%= f.submit "Sign up", class: "btn-info btn" %>
+<% end %>
 </div>
 
-<div id="right-col">
-  <h1><%= @user.username %></h1>
-  <h1><%= @user.email %></h1>
-  <h1>Change email notification type</h1>
-  All Updates
-  Major updates
-  no updates
-  
-  <% if @user.pledges.any?  %>
-	  <h3><%= "#{@user.username} is working on:" %></h3>
-	  <% @user.pledges.each do |pledge| %>
-	    <%= render pledge.project if pledge.project.approved %>
-	  <% end %>
-  <% else %>
-	  <h3><%= "#{@user.username} is not working on anything right now." %></h3>
-  <% end %>
-</div>
