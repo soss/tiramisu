@@ -19,26 +19,30 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.where(:email => params[:user][:email]).first
-    #Current user changing password, email, 
+    user_params = params[:user]
+    @user = User.where(:email => user_params[:email]).first
 
-    if current_user.email == params[:user][:email]
-      if params[:user][:old_password] != "" &&  params[:user][:new_password] != "" && params[:user][:confirm_password] != ""
-        if current_user.update_password(params[:user][:old_password], params[:user][:new_password], params[:user][:confirm_password])
+    #Current user changing password, email
+    if current_user.email == user_params[:email]
+
+      #Basic Input Validation
+      if user_params[:old_password] != "" &&  user_params[:new_password] != "" && user_params[:confirm_password] != ""
+
+        #Update Passwo
+        if current_user.update_password(user_params[:old_password], user_params[:new_password], user_params[:confirm_password])
           redirect_to(user_path, :notice => 'Password was successfully updated.')
+          @user.update_attribute(:email, user_params[:email])
+          @user.update_attribute(:notification, user_params[:notification].to_i)
         else
           redirect_to( edit_user_path(current_user), :alert => 'New passwords do not match.')
         end
-      else
-        @user.update_attribute(:email, params[:user][:email])
-        @user.update_attribute(:notification, params[:user][:notification].to_i)
-
-        redirect_to( root_url, :notice => "Settings changed")
       end
     else
-      if (current_user.role == 1 && @user != nil) || User.authenticate(params[:user][:email], params[:user][:old_password]).present?
-        @user.update_attribute(:email, params[:user][:email])
-        @user.update_attribute(:notification, params[:user][:notification].to_i)
+
+      #Administrator Changing users password, email
+      if (current_user.role == 1 && @user != nil) || User.authenticate(user_params[:email], user_params[:old_password]).present?
+        @user.update_attribute(:email, user_params[:email])
+        @user.update_attribute(:notification, user_params[:notification].to_i)
 
         redirect_to( root_url, :notice => "Settings changed")
       else
