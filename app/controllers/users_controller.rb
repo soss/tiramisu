@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       #Basic Input Validation
       if user_params[:old_password] != "" &&  user_params[:new_password] != "" && user_params[:confirm_password] != ""
 
-        #Update Passwo
+        #Update Password
         if current_user.update_password(user_params[:old_password], user_params[:new_password], user_params[:confirm_password])
           redirect_to(user_path, :notice => 'Password was successfully updated.')
           @user.update_attribute(:email, user_params[:email])
